@@ -9,9 +9,9 @@ console.log({ CATEGORIES, TASKS });
 function App() {
   const [tasks, setTasks] = useState(TASKS);
   const [category, setCategory] = useState("All");
-
-  function handleAddTask(newTask) {
-    setTasks([...tasks, newTask]);
+  
+  function onTaskFormSubmit(newTask) {
+  setTasks([...tasks, newTask]);
   }
   const visibleTasks = tasks.filter(
     (task) => category === "All" || task.category === category
@@ -29,8 +29,9 @@ function App() {
         onSelectCategory={setCategory}
       />
       {/* {categories} */}
-      <NewTaskForm categories={CATEGORIES.filter((cat) => cat !== "All")}
-        onTaskFormSubmit={handleAddTask}
+      <NewTaskForm
+        categories={CATEGORIES.filter((cat) => cat !== "All")}
+        onTaskFormSubmit={onTaskFormSubmit}
       />
       <TaskList
         categories={CATEGORIES}
